@@ -1,7 +1,7 @@
 menu_series<- tabItem(tabName = "series",
                       fluidRow(
                         column(width = 12,
-                               tabBox(title ="series工作台",width = 12,
+                               tabBox(title ="人工确认工作台",width = 12,
                                       id='tabSet_series',height = '300px',
                                       tabPanel('sheet1',tagList(
                                         fluidRow(column(4,box(

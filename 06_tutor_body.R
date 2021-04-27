@@ -1,7 +1,7 @@
 menu_tutor <- tabItem(tabName = "tutor",
                       fluidRow(
                         column(width = 12,
-                               tabBox(title ="tutor工作台",width = 12,
+                               tabBox(title ="日志管理工作台",width = 12,
                                       id='tabSet_tutor',height = '300px',
                                       tabPanel('sheet1',tagList(
                                         fluidRow(column(4,box(
