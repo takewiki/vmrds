@@ -3,10 +3,10 @@ menu_row <- tabItem(tabName = "row",
                       column(width = 12,
                              tabBox(title ="物料管理工作台",width = 12,
                                     id='tabSet_row',height = '300px',
-                                    tabPanel('sheet1',tagList(
+                                    tabPanel('ERP初始化物料导入PLM',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                       'sheet1'
+                                        actionButton(inputId = 'erp_item_intial',label = '初始化物料导入')
                                       )),
                                       column(8, box(
                                         title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
@@ -16,7 +16,7 @@ menu_row <- tabItem(tabName = "row",
                                       ))
                                       
                                     )),
-                                    tabPanel('sheet2',tagList(
+                                    tabPanel('物料属性批量修改',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
                                         'sheet2'
@@ -29,7 +29,7 @@ menu_row <- tabItem(tabName = "row",
                                       
                                     )),
                                     
-                                    tabPanel('sheet3',tagList(
+                                    tabPanel('初始化物料中间表对比',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
                                         'sheet3'

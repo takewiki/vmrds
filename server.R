@@ -1,4 +1,10 @@
 
+library(readxl)
+bom_tpl <- read_excel("www/bom_tpl.xlsx", 
+                      sheet = "BOM")
+bom_data <- list(bom_tpl)
+names(bom_data) <- "BOM"
+
 
 #shinyserver start point----
  shinyServer(function(input, output,session) {
@@ -185,7 +191,38 @@
        
        
     })
-   
+    
+    # 1 ITEM -------
+    
+    observeEvent(input$erp_item_intial,{
+      
+         try(vmrdspkg::ERPtoPLM_Item_ALL(conn_erp = conn_erp,conn_plm = conn_plm))
+         pop_notice('初始化物料成功写入PLM！')
+         
+      
+      
+    })
+    
+    # 2 bom-----
+    
+    run_download_xlsx(id = 'ERP_BOM_TPL_DL',data = bom_data,filename = 'BOM导入模板.xlsx')
+    
+    
+    var_ERP_BOM_FILE = var_file("ERP_BOM_FILE")
+    observeEvent(input$ERP_BOM_DONE,{
+      ERP_BOM_FILE_param = var_ERP_BOM_FILE()
+      data_file = readxl::read_excel(ERP_BOM_FILE_param, 
+                                     sheet = "BOM")
+      FNumbers = data_file[ ,'BOM顶层物料编码',drop =TRUE]
+      print(FNumbers)
+      try(vmrdspkg::ERPtoPLM_BOM_ALL(conn_erp = conn_erp,conn_plm = conn_plm,FNumbers = FNumbers))
+      pop_notice('初始化BOM成功写入PLM！')
+      
+      
+      
+    })
+    
+    
    
    
    
