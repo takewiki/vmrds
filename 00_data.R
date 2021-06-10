@@ -1,4 +1,5 @@
 # 设置app标题-----
+#1.1
 
 app_title <-'域华电子数据中台V1.0';
 
@@ -13,6 +14,9 @@ conn_be <- conn_rds('rdbe')
 
 #设置链接---
 conn <- conn_rds('nsic')
+
+conn_erp = vmrdspkg::conn_vm_erp_test2()
+conn_plm = vmrdspkg::conn_vm_plm_prd()
 
 
 
