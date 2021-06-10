@@ -223,6 +223,21 @@ names(bom_data) <- "BOM"
     })
     
     
+    #2.2 bom one---
+    var_ERP_BOM_FNumber_one <- var_text('ERP_BOM_FNumber_one')
+    observeEvent(input$ERP_BOM_DONE_one,{
+    
+      FNumber = var_ERP_BOM_FNumber_one()
+      print(FNumber)
+      try(vmrdspkg::ERPtoPLM_BOM_one(conn_erp = conn_erp,conn_plm = conn_plm,FNumber = FNumber))
+      txt <- paste0(FNumber,':初始化BOM成功写入PLM！')
+      pop_notice(txt)
+      
+      
+      
+    })
+    
+    
    
    
    
