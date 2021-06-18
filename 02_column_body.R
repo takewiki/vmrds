@@ -29,7 +29,7 @@ menu_column <- tabItem(tabName = "column",
                                          )),
                                          column(8, box(
                                            title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                           'rpt2'
+                                           '增加提示框，针对没有导入的BOM进行提醒'
                                          )
                                          ))
                                          

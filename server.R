@@ -239,7 +239,9 @@ names(bom_data) <- "BOM"
     
     
    
-   
+   #数据库连接信息----
+    print(run_sql_common('conn_erp'))
+    print(run_sql_common('conn_plm'))
    
   
 })

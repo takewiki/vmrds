@@ -3,7 +3,7 @@ menu_row <- tabItem(tabName = "row",
                       column(width = 12,
                              tabBox(title ="物料管理工作台",width = 12,
                                     id='tabSet_row',height = '300px',
-                                    tabPanel('ERP初始化物料导入PLM',tagList(
+                                    tabPanel('ERP初始化物料导入PLM(全量)',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
                                         actionButton(inputId = 'erp_item_intial',label = '初始化物料导入')
@@ -16,10 +16,23 @@ menu_row <- tabItem(tabName = "row",
                                       ))
                                       
                                     )),
+                                    tabPanel('ERP初始化物料导入PLM(增量)',tagList(
+                                      fluidRow(column(4,box(
+                                        title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                        actionButton(inputId = 'erp_item_intial2',label = '初始化物料导入')
+                                      )),
+                                      column(8, box(
+                                        title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                        
+                                        tags$h4('限12346物料，对比中心表的ERP与PLM之间的物料代码数据')
+                                      )
+                                      ))
+                                      
+                                    )),
                                     tabPanel('物料属性批量修改',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                        'sheet2'
+                                        tags$h4('物料属性批量修改-待更新，核心功能')
                                       )),
                                       column(8, box(
                                         title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
@@ -37,18 +50,6 @@ menu_row <- tabItem(tabName = "row",
                                       column(8, box(
                                         title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
                                         'rpt3'
-                                      )
-                                      ))
-                                      
-                                    )),
-                                    tabPanel('sheet4',tagList(
-                                      fluidRow(column(4,box(
-                                        title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                        'sheet4'
-                                      )),
-                                      column(8, box(
-                                        title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                        'rpt4'
                                       )
                                       ))
                                       

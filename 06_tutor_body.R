@@ -19,7 +19,7 @@ menu_tutor <- tabItem(tabName = "tutor",
                                       tabPanel('ERP连接设置',tagList(
                                         fluidRow(column(4,box(
                                           title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                          'sheet2'
+                                          tsui::mdl_sql_conn(id = 'conn_erp',label = 'ERP连接信息')
                                         )),
                                         column(8, box(
                                           title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
@@ -32,7 +32,7 @@ menu_tutor <- tabItem(tabName = "tutor",
                                       tabPanel('PLM连接设置',tagList(
                                         fluidRow(column(4,box(
                                           title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                          'sheet3'
+                                          tsui::mdl_sql_conn(id = 'conn_plm',label = 'PLM连接信息')
                                         )),
                                         column(8, box(
                                           title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
