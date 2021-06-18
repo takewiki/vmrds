@@ -1,4 +1,6 @@
 # 设置app标题-----
+#1.5
+# add the item batch modify.
 #1.3
 #1.2
 
