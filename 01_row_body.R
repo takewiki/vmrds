@@ -32,11 +32,17 @@ menu_row <- tabItem(tabName = "row",
                                     tabPanel('物料属性批量修改',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                        tags$h4('物料属性批量修改-待更新，核心功能')
+                                        tags$h4('物料属性批量修改-待更新，核心功能'),
+                                        mdl_file('mtrl_fp_file','选择物料名称.xlsx'),
+                                        textInput(inputId = 'mtrl_fp_sheetName',label = '选择页签',value = '物料'),
+                                        actionButton('mtrl_fp_preview','预览物料属性'),
+                                        actionButton('mtrl_fp_update','更新ERP物料'),
+                                        actionButton('mtrl_fp_update_reset','更新激活更新')
+                                        
                                       )),
                                       column(8, box(
                                         title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                       'rpt2'
+                                        mdl_dataTable('mtrl_fp_dataTable','预览物料名称数据')
                                       )
                                       ))
                                       

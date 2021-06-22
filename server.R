@@ -238,10 +238,28 @@ names(bom_data) <- "BOM"
     })
     
     
-   
-   #数据库连接信息----
-    print(run_sql_common('conn_erp'))
-    print(run_sql_common('conn_plm'))
+   #2.3物料属性批量修改-----
+    
+    var_mtrl_fp_file <- var_file('mtrl_fp_file')
+    observeEvent(input$mtrl_fp_preview,{
+      file <- var_mtrl_fp_file()
+      sheet <- input$mtrl_fp_sheetName
+      data <- kjrdspkg::mtrl_getFpName(file=file,sheet = sheet)
+      run_dataTable2('mtrl_fp_dataTable',data = data)
+      
+    })
+    
+    observeEvent(input$mtrl_fp_update,{
+      shinyjs::disable('mtrl_fp_update')
+      file <- var_mtrl_fp_file()
+      sheet <- input$mtrl_fp_sheetName
+      try({
+        kjrdspkg::mtrl_syncFpName(conn=conn,file = file,sheet = sheet)
+      })
+      pop_notice("更新物料开票名称及规格型号成功!")
+      
+    })
+
    
   
 })
