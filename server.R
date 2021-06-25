@@ -244,7 +244,7 @@ names(bom_data) <- "BOM"
     observeEvent(input$mtrl_fp_preview,{
       file <- var_mtrl_fp_file()
       sheet <- input$mtrl_fp_sheetName
-      data <- kjrdspkg::mtrl_getFpName(file=file,sheet = sheet)
+      data <- vmrdspkg::erp_materia_read(file=file,sheet = sheet)
       run_dataTable2('mtrl_fp_dataTable',data = data)
       
     })
@@ -254,9 +254,44 @@ names(bom_data) <- "BOM"
       file <- var_mtrl_fp_file()
       sheet <- input$mtrl_fp_sheetName
       try({
-        kjrdspkg::mtrl_syncFpName(conn=conn,file = file,sheet = sheet)
+        #上传数据进入服务器
+        data <- vmrdspkg::erp_materia_read(file=file,sheet = sheet,lang = 'en',conn = conn_erp)
+        #检验数据状态
+        vmrdspkg::erp_checkItemUseStatus(conn = conn_erp)
+        #更新数据
+        vmrdspkg::erp_updateItem_plmMode(conn = conn_erp)
+          
+        
       })
-      pop_notice("更新物料开票名称及规格型号成功!")
+      # 待更新通知信息,来源于采购订单及库存单据等
+      pop_notice("更新物料成功!")
+      
+    })
+    
+    #再次激活物料相关按纽-------
+    observeEvent(input$mtrl_fp_update_reset,{
+      shinyjs::enable('mtrl_fp_update')
+      
+      
+      
+      
+    })
+    
+    
+    
+    # 物料属性处理
+    var_mtrl_dates <- var_dateRange('mtrl_dates')
+    observeEvent(input$mtrl_getItem_fromPLM,{
+      dates <- var_mtrl_dates()
+      FStartDate <- as.character(dates[1])
+      FEndDate <- as.character(dates[2])
+      data <- vmrdspkg::erp_getItemListFromPlm(conn = conn_erp,FStartDate =FStartDate ,FEndDate =FEndDate ) 
+      run_dataTable2('mtrl_fp_dataTable',data = data)
+      #针对获取到的数据进行进一步的处理
+      data_dl <- list(data)
+      names(data_dl) <-'物料'
+      run_download_xlsx('mtrl_downloadItem_fromPLM',data = data_dl,filename = 'PLM传入ERP物料数据.xlsx')
+      
       
     })
 
