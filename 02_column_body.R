@@ -25,7 +25,8 @@ menu_column <- tabItem(tabName = "column",
                                            title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
                                            mdl_text('ERP_BOM_FNumber_one',label = '请录入BOM顶级物料代码:'),
                                            
-                                           actionButton(inputId = 'ERP_BOM_DONE_one',label = '导入BOM')
+                                           actionButton(inputId = 'ERP_BOM_DONE_one',label = '导入BOM'),
+                                           actionButton(inputId = 'ERP_BOM_DONE_one_reset',label = '再次激活导入BOM')
                                          )),
                                          column(8, box(
                                            title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
@@ -33,32 +34,33 @@ menu_column <- tabItem(tabName = "column",
                                          )
                                          ))
                                          
-                                       )),
-                                       
-                                       tabPanel('sheet3',tagList(
-                                         fluidRow(column(4,box(
-                                           title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                           'sheet3'
-                                         )),
-                                         column(8, box(
-                                           title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                           'rpt3'
-                                         )
-                                         ))
-                                         
-                                       )),
-                                       tabPanel('sheet4',tagList(
-                                         fluidRow(column(4,box(
-                                           title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                           'sheet4'
-                                         )),
-                                         column(8, box(
-                                           title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                           'rpt4'
-                                         )
-                                         ))
-                                         
                                        ))
+                                       #,
+                                       
+                                       # tabPanel('sheet3',tagList(
+                                       #   fluidRow(column(4,box(
+                                       #     title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                       #     'sheet3'
+                                       #   )),
+                                       #   column(8, box(
+                                       #     title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                       #     'rpt3'
+                                       #   )
+                                       #   ))
+                                       #   
+                                       # )),
+                                       # tabPanel('sheet4',tagList(
+                                       #   fluidRow(column(4,box(
+                                       #     title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                       #     'sheet4'
+                                       #   )),
+                                       #   column(8, box(
+                                       #     title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                       #     'rpt4'
+                                       #   )
+                                       #   ))
+                                       #   
+                                       # ))
                                        
                                        
                                        

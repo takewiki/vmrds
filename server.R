@@ -226,14 +226,35 @@ names(bom_data) <- "BOM"
     #2.2 bom one---
     var_ERP_BOM_FNumber_one <- var_text('ERP_BOM_FNumber_one')
     observeEvent(input$ERP_BOM_DONE_one,{
+      #导入单个BOM进行判断与提示
+      
+      
+      shinyjs::disable('ERP_BOM_DONE_one')
     
       FNumber = var_ERP_BOM_FNumber_one()
+      FInfo = vmrdspkg::ERP_BOM_preCheck(conn = conn_erp,FNumber = FNumber)
+      if( FInfo  ==  0){
+        txt = paste0(FNumber,"物料不存在")
+      }
+      if( FInfo ==1){
+        txt = paste0(FNumber,"BOM不存在")
+      }
+      
+      if ( FInfo ==2){
+        try(vmrdspkg::ERPtoPLM_BOM_one(conn_erp = conn_erp,conn_plm = conn_plm,FNumber = FNumber))
+        txt <- paste0(FNumber,':初始化BOM成功写入PLM！')
+      }
       print(FNumber)
-      try(vmrdspkg::ERPtoPLM_BOM_one(conn_erp = conn_erp,conn_plm = conn_plm,FNumber = FNumber))
-      txt <- paste0(FNumber,':初始化BOM成功写入PLM！')
+     
       pop_notice(txt)
       
       
+      
+    })
+    
+    #再次激活导入----
+    observeEvent(input$ERP_BOM_DONE_one_reset,{
+      shinyjs::enable('ERP_BOM_DONE_one')
       
     })
     
@@ -294,6 +315,7 @@ names(bom_data) <- "BOM"
       
       
     })
+    
 
    
   

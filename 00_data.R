@@ -20,13 +20,13 @@ conn <- conn_rds('nsic')
 
 
 # vm 测试环境
-conn_erp = vmrdspkg::conn_vm_erp_test2()
-conn_plm = vmrdspkg::conn_vm_plm_prd()
+# conn_erp = vmrdspkg::conn_vm_erp_test2()
+# conn_plm = vmrdspkg::conn_vm_plm_prd()
 
 #RDS测试环境
 
-# conn_erp = vmrdspkg::conn_vm_erp_test()
-# conn_plm = vmrdspkg::conn_vm_plm_test()
+conn_erp = vmrdspkg::conn_vm_erp_test()
+conn_plm = vmrdspkg::conn_vm_plm_test()
 
 
 
