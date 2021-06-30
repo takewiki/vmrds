@@ -4,7 +4,7 @@
 #1.3
 #1.2
 
-app_title <-'域华电子数据中台V2.2a';
+app_title <-'域华电子数据中台V2.2b';
 
 # store data into rdbe in the rds database
 app_id <- 'vmrds'
@@ -20,8 +20,8 @@ conn <- conn_rds('nsic')
 
 
 # vm 测试环境
-# conn_erp = vmrdspkg::conn_vm_erp_test2()
-# conn_plm = vmrdspkg::conn_vm_plm_prd()
+conn_erp = vmrdspkg::conn_vm_erp_test2()
+conn_plm = vmrdspkg::conn_vm_plm_prd()
 
 #RDS测试环境
 
@@ -29,8 +29,8 @@ conn <- conn_rds('nsic')
 # conn_plm = vmrdspkg::conn_vm_plm_test()
 
 # 正式环境
-conn_erp = vmrdspkg::conn_vm_erp_prd2()
-conn_plm = vmrdspkg::conn_vm_plm_prd2()
+# conn_erp = vmrdspkg::conn_vm_erp_prd2()
+# conn_plm = vmrdspkg::conn_vm_plm_prd2()
 
 
 
