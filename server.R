@@ -316,7 +316,215 @@ names(bom_data) <- "BOM"
       
     })
     
+    #设置数据库的连接信息----
+    var_conn_erp_ip <- var_text('conn_erp_ip')
+    var_conn_erp_port <- var_text('conn_erp_port')
+    var_conn_erp_user_name <- var_text('conn_erp_user_name')
+    var_conn_erp_password <- var_password('conn_erp_password')
+    var_conn_erp_db_name <- var_text('conn_erp_db_name')
+    observeEvent(input$conn_erp_test,{
+      #设置相关信息
+      ip <- var_conn_erp_ip()
+      port <- as.numeric(var_conn_erp_port())
+      user_name = var_conn_erp_user_name()
+      password = var_conn_erp_password()
+      db_name = var_conn_erp_db_name()
+      print(ip)
+      print(port)
+      
+      #结果结果进行处理
+      
+      result = tryCatch ( {
+        #只有变化时再测试连接，否则停止不断尝试
+        isolate({
+         conn_test <-  tsda::sql_conn_common(ip = ip,user_name = user_name,password = password,db_name = db_name,port = port)
+        sql_test <- "select 1 as FCount"
+        data_test <- tsda::sql_select(conn_test,sql_test)
+        ncount_test <- nrow(data_test)
+        if(ncount_test >0){
+          pop_notice('测试成功')
 
+        }
+        })
+        
+      } , warning = function ( w ) {
+        
+        print('warning')
+        
+      } , error = function ( e ) {
+        
+        pop_notice('测试失败,请刷新程序后重试！')
+        # 停止程序
+         stop(e)
+        
+      } , finally = {
+        
+       
+        
+      })
+      
+   
+
+     
+      
+      
+      
+    })
+
+    
+    observeEvent(input$conn_erp_setting,{
+      #设置相关信息
+      ip <- var_conn_erp_ip()
+      port <- var_conn_erp_port()
+      user_name = var_conn_erp_user_name()
+      password = var_conn_erp_password()
+      db_name = var_conn_erp_db_name()
+      
+      result = tryCatch ( {
+        #只有变化时再测试连接，否则停止不断尝试
+        isolate({
+          conn_test <-  tsda::sql_conn_common(ip = ip,user_name = user_name,password = password,db_name = db_name,port = port)
+          sql_test <- "select 1 as FCount"
+          data_test <- tsda::sql_select(conn_test,sql_test)
+          ncount_test <- nrow(data_test)
+          if(ncount_test >0){
+            
+            #设置链接
+            
+            vmrdspkg::conn_config_write(file_name = "config/conn_erp.xlsx",
+                                        ip = ip,
+                                        port = port,user_name = user_name,password = password,db_name = db_name
+                                        )
+            pop_notice('设置成功')
+            
+          }
+        })
+        
+      } , warning = function ( w ) {
+        
+        print('warning')
+        
+      } , error = function ( e ) {
+        
+        pop_notice('测试失败,请刷新程序后重试！')
+        # 停止程序
+        stop(e)
+        
+      } , finally = {
+        
+        
+        
+      })
+      
+      
+     
+      
+    })
+    
+    #设置plm连接
+    var_conn_plm_ip <- var_text('conn_plm_ip')
+    var_conn_plm_port <- var_text('conn_plm_port')
+    var_conn_plm_user_name <- var_text('conn_plm_user_name')
+    var_conn_plm_password <- var_password('conn_plm_password')
+    var_conn_plm_db_name <- var_text('conn_plm_db_name')
+    observeEvent(input$conn_plm_test,{
+      #设置相关信息
+      ip <- var_conn_plm_ip()
+      port <- as.numeric(var_conn_plm_port())
+      user_name = var_conn_plm_user_name()
+      password = var_conn_plm_password()
+      db_name = var_conn_plm_db_name()
+      print(ip)
+      print(port)
+      
+      #结果结果进行处理
+      
+      result = tryCatch ( {
+        #只有变化时再测试连接，否则停止不断尝试
+        isolate({
+          conn_test <-  tsda::sql_conn_common(ip = ip,user_name = user_name,password = password,db_name = db_name,port = port)
+          sql_test <- "select 1 as FCount"
+          data_test <- tsda::sql_select(conn_test,sql_test)
+          ncount_test <- nrow(data_test)
+          if(ncount_test >0){
+            pop_notice('测试成功')
+            
+          }
+        })
+        
+      } , warning = function ( w ) {
+        
+        print('warning')
+        
+      } , error = function ( e ) {
+        
+        pop_notice('测试失败,请刷新程序后重试！')
+        # 停止程序
+        stop(e)
+        
+      } , finally = {
+        
+        
+        
+      })
+      
+      
+      
+      
+      
+      
+      
+    })
+    
+    
+    observeEvent(input$conn_plm_setting,{
+      #设置相关信息
+      ip <- var_conn_plm_ip()
+      port <- var_conn_plm_port()
+      user_name = var_conn_plm_user_name()
+      password = var_conn_plm_password()
+      db_name = var_conn_plm_db_name()
+      
+      result = tryCatch ( {
+        #只有变化时再测试连接，否则停止不断尝试
+        isolate({
+          conn_test <-  tsda::sql_conn_common(ip = ip,user_name = user_name,password = password,db_name = db_name,port = port)
+          sql_test <- "select 1 as FCount"
+          data_test <- tsda::sql_select(conn_test,sql_test)
+          ncount_test <- nrow(data_test)
+          if(ncount_test >0){
+            
+            #设置链接
+            
+            vmrdspkg::conn_config_write(file_name = "config/conn_plm.xlsx",
+                                        ip = ip,
+                                        port = port,user_name = user_name,password = password,db_name = db_name
+            )
+            pop_notice('设置成功')
+            
+          }
+        })
+        
+      } , warning = function ( w ) {
+        
+        print('warning')
+        
+      } , error = function ( e ) {
+        
+        pop_notice('测试失败,请刷新程序后重试！')
+        # 停止程序
+        stop(e)
+        
+      } , finally = {
+        
+        
+        
+      })
+      
+      
+      
+      
+    })
    
   
 })

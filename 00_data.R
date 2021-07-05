@@ -1,11 +1,4 @@
-# 设置app标题-----
-#1.5
-# add the item batch modify.
-#1.3
-#1.2
-
-app_title <-'域华电子数据中台V2.2b';
-
+app_title <-'域华电子数据中台V2.3';
 # store data into rdbe in the rds database
 app_id <- 'vmrds'
 
@@ -13,15 +6,15 @@ app_id <- 'vmrds'
 
 conn_be <- conn_rds('rdbe')
 
-
-
 #设置链接---
 conn <- conn_rds('nsic')
+conn_erp <- vmrdspkg::conn_config_read("config/conn_erp.xlsx")
+conn_plm <- vmrdspkg::conn_config_read("config/conn_plm.xlsx")
 
 
 # vm 测试环境
-conn_erp = vmrdspkg::conn_vm_erp_test2()
-conn_plm = vmrdspkg::conn_vm_plm_prd()
+# conn_erp = vmrdspkg::conn_vm_erp_test2()
+# conn_plm = vmrdspkg::conn_vm_plm_prd()
 
 #RDS测试环境
 
@@ -32,9 +25,4 @@ conn_plm = vmrdspkg::conn_vm_plm_prd()
 # conn_erp = vmrdspkg::conn_vm_erp_prd2()
 # conn_plm = vmrdspkg::conn_vm_plm_prd2()
 
-
-
-# 版本控制 --------
-#V1.0--------
-# 建议基本数据框架----
 
