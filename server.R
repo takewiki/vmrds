@@ -203,6 +203,41 @@ names(bom_data) <- "BOM"
       
     })
     
+    # 相应的处理数据
+    var_erp_item_options_show <- var_text('erp_item_options_show')
+    observeEvent(input$erp_item_intial2,{
+      FNumbers = var_erp_item_options_show() 
+      
+      res <-try(vmrdspkg::item_selectValue_ERP2PLM_multi(conn_erp = conn_erp,conn_plm = conn_plm,FNumbers = FNumbers))
+      if (res){
+        pop_notice('物料成功写入PLM！')
+      }else{
+        pop_notice('物料成功写入PLM失败，请检验物料编码是否确认！')
+      }
+
+      
+      
+      
+    })
+    
+    #物料导入事项-------
+      observeEvent(input$erp_item_intial_newRead,{
+        data <-try(vmrdspkg::item_selectValue_ERP2PLM_newRead(conn_erp = conn_erp,conn_plm = conn_plm))
+        
+        run_dataTable2('erp_item_intial_newWrite_dataView',data = data)
+        
+      })
+    
+    #写入数据
+      observeEvent(input$erp_item_intial_newWrite,{
+        try(vmrdspkg::item_selectValue_ERP2PLM_newWrite(conn_erp = conn_erp,conn_plm = conn_plm))
+        
+        
+
+        
+      })
+    
+    
     # 2 bom-----
     
     run_download_xlsx(id = 'ERP_BOM_TPL_DL',data = bom_data,filename = 'BOM导入模板.xlsx')

@@ -16,19 +16,28 @@ menu_row <- tabItem(tabName = "row",
                                       ))
                                       
                                     )),
-                                    # tabPanel('ERP初始化物料导入PLM(增量)',tagList(
-                                    #   fluidRow(column(4,box(
-                                    #     title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                    #     actionButton(inputId = 'erp_item_intial2',label = '初始化物料导入')
-                                    #   )),
-                                    #   column(8, box(
-                                    #     title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                    #     
-                                    #     tags$h4('限12346物料，对比中心表的ERP与PLM之间的物料代码数据')
-                                    #   )
-                                    #   ))
-                                    #   
-                                    # )),
+                                    tabPanel('ERP2PLM同步物料(日常)',tagList(
+                                      fluidRow(column(8,box(
+                                        title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                        tags$h4('请填写多个物料编码,使用逗号,间隔,物料编码之间不保留多余的空格'),
+                                        mdl_text(id = 'erp_item_options_show',label = '选择多个待导入的物料编码',value = '1.100.01.001,120.01.002'),
+                                        actionButton(inputId = 'erp_item_intial2',label = '同步物料至PLM'),
+                                        br(),
+                                        hr(),
+                                        tags$h4('限12346物料，对比中心表的ERP与PLM之间的物料代码数据'),
+                                        actionButton(inputId = 'erp_item_intial_newRead',label = '查看所有新增物料'),
+                                        actionButton(inputId = 'erp_item_intial_newWrite',label = '同步所有新增物料')
+                                        
+                                      )),
+                                      column(4, box(
+                                        title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                        div(style = 'overflow-x: scroll',mdl_dataTable('erp_item_intial_newWrite_dataView','预览物料名称数据'))
+
+                                        
+                                      )
+                                      ))
+
+                                    )),
                                     tabPanel('物料属性批量修改',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
