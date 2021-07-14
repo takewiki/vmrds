@@ -5,7 +5,8 @@ workAreaSetting <-tabItems(
   menu_column,
   menu_book,
   menu_series,
-  menu_majority,
+
+   menu_majority,
   menu_tutor,
   menu_dbms,
   menu_user

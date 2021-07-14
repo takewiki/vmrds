@@ -23,6 +23,7 @@ source('00_data.R',encoding = 'utf-8');
 source('01_row_body.R',encoding = 'utf-8');
 source('02_column_body.R',encoding = 'utf-8');
 source('03_book_body.R',encoding = 'utf-8');
+#取消相应内容的加载-人工确认界面
 source('04_series_body.R',encoding = 'utf-8');
 source('05_majority_body.R',encoding = 'utf-8');
 source('06_tutor_body.R',encoding = 'utf-8');

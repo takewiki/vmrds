@@ -3,6 +3,19 @@ menu_tutor <- tabItem(tabName = "tutor",
                         column(width = 12,
                                tabBox(title ="日志管理工作台",width = 12,
                                       id='tabSet_tutor',height = '300px',
+                                      tabPanel('ERP初始化物料导入PLM',tagList(
+                                        fluidRow(column(4,box(
+                                          title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                          actionButton(inputId = 'erp_item_intial',label = '初始化物料导入')
+                                        )),
+                                        column(8, box(
+                                          title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                          
+                                          'rpt1'
+                                        )
+                                        ))
+                                        
+                                      )),
                                       tabPanel('日志管理',tagList(
                                         fluidRow(column(4,box(
                                           title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
@@ -44,19 +57,21 @@ menu_tutor <- tabItem(tabName = "tutor",
                                           
                                         )))
                                         
-                                      )),
-                                      tabPanel('sheet4',tagList(
-                                        fluidRow(column(4,box(
-                                          title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                          'sheet4'
-                                        )),
-                                        column(8, box(
-                                          title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                          'rpt4'
-                                        )
-                                        ))
-                                        
                                       ))
+                                      #暂时没有放了功能点
+                                      # ,
+                                      # tabPanel('sheet4',tagList(
+                                      #   fluidRow(column(4,box(
+                                      #     title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                      #     'sheet4'
+                                      #   )),
+                                      #   column(8, box(
+                                      #     title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                      #     'rpt4'
+                                      #   )
+                                      #   ))
+                                      #   
+                                      # ))
                                       
                                       
                                       
