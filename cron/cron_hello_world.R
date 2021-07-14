@@ -1,13 +1,12 @@
 library(cronR)
-f <- "cron/hello_world.R"
+f <- "/home/hulilei/app/vmrds/cron/hello_world.R"
 
 source(f)
 
 cmd <- cron_rscript(f)
 cmd
 
-aa <- cron_add(command = cmd, frequency = 'minutely', id = 'test1', description = 'My process 1', tags = c('lab', 'xyz'))
-
+cron
 cron_njobs()
 
 cron_rm('test1')

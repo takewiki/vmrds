@@ -25,4 +25,15 @@ conn_plm <- vmrdspkg::conn_config_read("config/conn_plm.xlsx")
 # conn_erp = vmrdspkg::conn_vm_erp_prd2()
 # conn_plm = vmrdspkg::conn_vm_plm_prd2()
 
+#测试环境
+
+# cron_bom_file = '/home/hulilei/app/vmrds/cron/autoRun_bom.R'
+# 
+# cron_item_file ='/home/hulilei/app/vmrds/cron/autoRun_item.R'
+
+#正式环境
+cron_bom_file = '/srv/shiny-server/cron/autoRun_bom.R'
+
+cron_item_file ='/srv/shiny-server/cron/autoRun_item.R'
+
 

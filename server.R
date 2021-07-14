@@ -299,9 +299,15 @@ names(bom_data) <- "BOM"
     var_mtrl_fp_file <- var_file('mtrl_fp_file')
     observeEvent(input$mtrl_fp_preview,{
       file <- var_mtrl_fp_file()
-      sheet <- input$mtrl_fp_sheetName
-      data <- vmrdspkg::erp_materia_read(file=file,sheet = sheet)
-      run_dataTable2('mtrl_fp_dataTable',data = data)
+      print(file)
+      if(!is.null(file)){
+        sheet <- input$mtrl_fp_sheetName
+        data <- vmrdspkg::erp_materia_read(file=file,sheet = sheet)
+        run_dataTable2('mtrl_fp_dataTable',data = data)
+      }else{
+        pop_notice('请选择物料属性修改文件,然后上传')
+      }
+   
       
     })
     
@@ -559,6 +565,27 @@ names(bom_data) <- "BOM"
       
       
       
+    })
+    
+    #自动同步设置------
+    
+    var_cron_time_item <- var_integer('cron_time_item')
+    var_cron_time_bom <- var_integer('cron_time_bom')
+    observeEvent(input$cron_time_bom_set,{
+      #同步BOM
+      time_bom =  var_cron_time_bom()
+      print(time_bom)
+      vmrdspkg::cron_set(r_file = cron_bom_file,time = time_bom,id = 'job_bom',description = '同步BOM至ERP')
+      pop_notice(paste0('BOM同步间隔',time_bom,'分钟一次!'))
+      
+      
+    })
+    observeEvent(input$cron_time_item_set,{
+      #同步物料
+      time_item = var_cron_time_item()
+      print(time_item)
+      vmrdspkg::cron_set(r_file = cron_item_file,time = time_item,id = 'job_item',description = '同步物料至ERP')
+      pop_notice(paste0('物料同步间隔',time_item,'分钟一次!'))
     })
    
   

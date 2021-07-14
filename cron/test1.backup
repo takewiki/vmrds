@@ -1,7 +1,0 @@
-## cronR job
-## id:   test1
-## tags: lab, xyz
-## desc: My process 1
-0-59 * * * * /usr/lib/R/bin/Rscript 'cron/hello_world.R'  >> 'cron/hello_world.log' 2>&1
-
- 
