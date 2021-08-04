@@ -3,7 +3,7 @@ menu_majority <- tabItem(tabName = "majority",
                            column(width = 12,
                                   tabBox(title ="报表分析工作台",width = 12,
                                          id='tabSet_majority',height = '300px',
-                                         tabPanel('sheet1',tagList(
+                                         tabPanel('物料分析',tagList(
                                            fluidRow(column(4,box(
                                              title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
                                              'sheet1'
@@ -16,7 +16,7 @@ menu_majority <- tabItem(tabName = "majority",
                                            ))
                                            
                                          )),
-                                         tabPanel('sheet2',tagList(
+                                         tabPanel('BOM分析',tagList(
                                            fluidRow(column(4,box(
                                              title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
                                              'sheet2'
@@ -24,31 +24,6 @@ menu_majority <- tabItem(tabName = "majority",
                                            column(8, box(
                                              title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
                                              'rpt2'
-                                           )
-                                           ))
-                                           
-                                         )),
-                                         
-                                         tabPanel('sheet3',tagList(
-                                           fluidRow(column(4,box(
-                                             title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                             'sheet3'
-                                           )),
-                                           column(8, box(
-                                             title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                             'rpt3'
-                                           )
-                                           ))
-                                           
-                                         )),
-                                         tabPanel('sheet4',tagList(
-                                           fluidRow(column(4,box(
-                                             title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                             'sheet4'
-                                           )),
-                                           column(8, box(
-                                             title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                             'rpt4'
                                            )
                                            ))
                                            
