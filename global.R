@@ -17,6 +17,7 @@ library(shinyalert);
 library(rclipboard);
 library(DTedit);
 library(vmrdspkg)
+library(echarts4r)
 
 
 source('00_data.R',encoding = 'utf-8');

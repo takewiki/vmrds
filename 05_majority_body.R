@@ -3,31 +3,98 @@ menu_majority <- tabItem(tabName = "majority",
                            column(width = 12,
                                   tabBox(title ="报表分析工作台",width = 12,
                                          id='tabSet_majority',height = '300px',
-                                         tabPanel('物料分析',tagList(
+                                         tabPanel('ERPtoPLM物料日志分析',tagList(
                                            fluidRow(column(4,box(
                                              title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                             'sheet1'
+                                             mdl_dateRange(id = 'log_dates_1',label = '请选择日期范围',startDate = Sys.Date()-31,
+                                                           endDate = Sys.Date()
+                                                           ),
+                                             actionButton(inputId ='log_query1',label = '查询日志' 
+                                                            )
                                            )),
                                            column(8, box(
                                              title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
                                              
-                                             'rpt1'
+                                             echarts4rOutput('chart1')
                                            )
-                                           ))
+                                           )) ,
+                                           fluidRow(column(12,box(
+                                                           title = "详细区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                                           tags$p('在上图中选择一个日期节点'),
+                                                           
+                                                           DTOutput('dt1')
+                                                           ))
                                            
-                                         )),
-                                         tabPanel('BOM分析',tagList(
+                                         ))),
+                                         tabPanel('ERPtoPLMBOM日志分析',tagList(
                                            fluidRow(column(4,box(
                                              title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                             'sheet2'
+                                             mdl_dateRange(id = 'log_dates_2',label = '请选择日期范围',startDate = Sys.Date()-31,
+                                                           endDate = Sys.Date()
+                                             ),
+                                             actionButton(inputId ='log_query2',label = '查询日志' 
+                                             )
                                            )),
                                            column(8, box(
                                              title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
-                                             'rpt2'
+                                             
+                                             echarts4rOutput('chart2')
                                            )
+                                           )) ,
+                                           fluidRow(column(12,box(
+                                             title = "详细区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             tags$p('在上图中选择一个日期节点'),
+                                             
+                                             DTOutput('dt2')
                                            ))
                                            
-                                         ))
+                                           ))),
+                                         tabPanel('PLMtoERP物料日志分析',tagList(
+                                           fluidRow(column(4,box(
+                                             title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             mdl_dateRange(id = 'log_dates_3',label = '请选择日期范围',startDate = Sys.Date()-31,
+                                                           endDate = Sys.Date()
+                                             ),
+                                             actionButton(inputId ='log_query3',label = '查询日志' 
+                                             )
+                                           )),
+                                           column(8, box(
+                                             title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             
+                                             echarts4rOutput('chart3')
+                                           )
+                                           )) ,
+                                           fluidRow(column(12,box(
+                                             title = "详细区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             tags$p('在上图中选择一个日期节点'),
+                                             
+                                             DTOutput('dt3')
+                                           ))
+                                           
+                                           ))),
+                                         tabPanel('PLMtoERPBOM日志分析',tagList(
+                                           fluidRow(column(4,box(
+                                             title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             mdl_dateRange(id = 'log_dates_4',label = '请选择日期范围',startDate = Sys.Date()-31,
+                                                           endDate = Sys.Date()
+                                             ),
+                                             actionButton(inputId ='log_query4',label = '查询日志' 
+                                             )
+                                           )),
+                                           column(8, box(
+                                             title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             
+                                             echarts4rOutput('chart4')
+                                           )
+                                           )) ,
+                                           fluidRow(column(12,box(
+                                             title = "详细区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             tags$p('在上图中选择一个日期节点'),
+                                             
+                                             DTOutput('dt4')
+                                           ))
+                                           
+                                           )))
                                          
                                          
                                          

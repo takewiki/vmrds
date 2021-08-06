@@ -575,8 +575,8 @@ names(bom_data) <- "BOM"
       #同步BOM
       time_bom =  var_cron_time_bom()
       print(time_bom)
-      vmrdspkg::cron_set(r_file = cron_bom_file,time = time_bom,id = 'job_bom',description = '同步BOM至ERP')
-      pop_notice(paste0('BOM同步间隔',time_bom,'分钟一次!'))
+      # vmrdspkg::cron_set(r_file = cron_bom_file,time = time_bom,id = 'job_bom',description = '同步BOM至ERP')
+      pop_notice(paste0('BOM同步间隔',time_bom,'分钟一次!,重启后端服务后生效'))
       
       
     })
@@ -584,8 +584,178 @@ names(bom_data) <- "BOM"
       #同步物料
       time_item = var_cron_time_item()
       print(time_item)
-      vmrdspkg::cron_set(r_file = cron_item_file,time = time_item,id = 'job_item',description = '同步物料至ERP')
-      pop_notice(paste0('物料同步间隔',time_item,'分钟一次!'))
+      #vmrdspkg::cron_set(r_file = cron_item_file,time = time_item,id = 'job_item',description = '同步物料至ERP')
+      
+      pop_notice(paste0('物料同步间隔',time_item,'分钟一次!,重启后端服务后生效'))
+    })
+    #日志分析
+    var_log_dates_1 <- var_dateRange('log_dates_1')
+    observeEvent(input$log_query1,{
+      dates = var_log_dates_1()
+      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_Item_summary',
+                                            FStartDate = dates[1],FEndDate = dates[2])
+      filter_date1 <- reactiveVal(value = NULL)
+      
+      # Update the filter date on click on data point
+      observeEvent(input$chart1_clicked_data, {
+        filter_date1(input$chart1_clicked_data$value[1])
+      })
+      # Create an interactive chart
+      output$chart1 <- renderEcharts4r({
+        data_summary %>% 
+          e_charts(FLogDate) %>% 
+          e_line(
+            serie = FCount, 
+            name = '物料数',
+            symbolSize = 12
+          ) %>% 
+          e_tooltip(axisPointer = list(type = 'cross')) %>% 
+          e_axis_labels(y = '物料数')
+      })
+      
+      # Create a table with detailed information
+      output$dt1 <- renderDT({
+        if (!is.null(filter_date1())) {
+          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_Item_detail',FLogDate =     filter_date1())
+          datatable(
+            data, 
+            selection = 'none', 
+            rownames = FALSE,
+            options = list(dom = 'tip') # select table elements to show
+          )
+        }
+        
+    
+      })
+      
+      
+      
+    })
+    #LOG2
+    var_log_dates_2 <- var_dateRange('log_dates_2')
+    observeEvent(input$log_query2,{
+      dates = var_log_dates_2()
+      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_BOM_summary',FStartDate = dates[1],FEndDate = dates[2])
+      filter_date2 <- reactiveVal(value = NULL)
+      
+      # Update the filter date on click on data point
+      observeEvent(input$chart2_clicked_data, {
+        filter_date2(input$chart2_clicked_data$value[1])
+      })
+      # Create an interactive chart
+      output$chart2 <- renderEcharts4r({
+        data_summary %>% 
+          e_charts(FLogDate) %>% 
+          e_line(
+            serie = FCount, 
+            name = 'BOM数',
+            symbolSize = 12
+          ) %>% 
+          e_tooltip(axisPointer = list(type = 'cross')) %>% 
+          e_axis_labels(y = 'BOM数')
+      })
+      
+      # Create a table with detailed information
+      output$dt2 <- renderDT({
+        if (!is.null(filter_date2())) {
+          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_BOM_detail',FLogDate =     filter_date2())
+          datatable(
+            data, 
+            selection = 'none', 
+            rownames = FALSE,
+            options = list(dom = 'tip') # select table elements to show
+          )
+        }
+        
+        
+      })
+      
+      
+      
+    })
+    #LOG3
+    var_log_dates_3 <- var_dateRange('log_dates_3')
+    observeEvent(input$log_query3,{
+      dates = var_log_dates_3()
+      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_Item_summary',FStartDate = dates[1],FEndDate = dates[2])
+      filter_date3 <- reactiveVal(value = NULL)
+      
+      # Update the filter date on click on data point
+      observeEvent(input$chart3_clicked_data, {
+        filter_date3(input$chart3_clicked_data$value[1])
+      })
+      # Create an interactive chart
+      output$chart3 <- renderEcharts4r({
+        data_summary %>% 
+          e_charts(FLogDate) %>% 
+          e_line(
+            serie = FCount, 
+            name = '物料数',
+            symbolSize = 12
+          ) %>% 
+          e_tooltip(axisPointer = list(type = 'cross')) %>% 
+          e_axis_labels(y = '物料数')
+      })
+      
+      # Create a table with detailed information
+      output$dt3 <- renderDT({
+        if (!is.null(filter_date3())) {
+          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_Item_detail',FLogDate =     filter_date3())
+          datatable(
+            data, 
+            selection = 'none', 
+            rownames = FALSE,
+            options = list(dom = 'tip') # select table elements to show
+          )
+        }
+        
+        
+      })
+      
+      
+      
+    })
+    #L0G4
+    var_log_dates_4 <- var_dateRange('log_dates_4')
+    observeEvent(input$log_query4,{
+      dates = var_log_dates_4()
+      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_BOM_summary',FStartDate = dates[1],FEndDate = dates[2])
+      filter_date4 <- reactiveVal(value = NULL)
+      
+      # Update the filter date on click on data point
+      observeEvent(input$chart4_clicked_data, {
+        filter_date4(input$chart4_clicked_data$value[1])
+      })
+      # Create an interactive chart
+      output$chart4 <- renderEcharts4r({
+        data_summary %>% 
+          e_charts(FLogDate) %>% 
+          e_line(
+            serie = FCount, 
+            name = 'BOM数',
+            symbolSize = 12
+          ) %>% 
+          e_tooltip(axisPointer = list(type = 'cross')) %>% 
+          e_axis_labels(y = 'BOM数')
+      })
+      
+      # Create a table with detailed information
+      output$dt4 <- renderDT({
+        if (!is.null(filter_date4())) {
+          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_BOM_detail',FLogDate =     filter_date4())
+          datatable(
+            data, 
+            selection = 'none', 
+            rownames = FALSE,
+            options = list(dom = 'tip') # select table elements to show
+          )
+        }
+        
+        
+      })
+      
+      
+      
     })
    
   
