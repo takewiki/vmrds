@@ -317,10 +317,13 @@ names(bom_data) <- "BOM"
       sheet <- input$mtrl_fp_sheetName
       try({
         #上传数据进入服务器
+        print('1')
         data <- vmrdspkg::erp_materia_read(file=file,sheet = sheet,lang = 'en',conn = conn_erp)
         #检验数据状态
+        print('2')
         vmrdspkg::erp_checkItemUseStatus(conn = conn_erp)
         #更新数据
+        print('3')
         vmrdspkg::erp_updateItem_plmMode(conn = conn_erp)
           
         
