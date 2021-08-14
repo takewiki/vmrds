@@ -1,5 +1,5 @@
-ip='123.207.201.140'
+ip='192.168.0.16'
 port=1433
-user_name='sa'
-password='rds@2020'
+user_name='infodba'
+password='infodba'
 db_name='TC4K3DB'
