@@ -1,5 +1,5 @@
-ip='192.168.0.110'
+ip='123.207.201.140'
 port=1433
 user_name='sa'
-password='Vxmt$h5502'
-db_name='AIS20200629100920'
+password='rds@2020'
+db_name='AIS20140904110155'
