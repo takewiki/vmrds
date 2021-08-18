@@ -595,7 +595,7 @@ names(bom_data) <- "BOM"
     var_log_dates_1 <- var_dateRange('log_dates_1')
     observeEvent(input$log_query1,{
       dates = var_log_dates_1()
-      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_Item_summary',
+      data_summary <- vmrdspkg::log_summary(conn = conn_erp,FTableName = 'rds_vw_log_ERPtoPLM_Item_summary',
                                             FStartDate = dates[1],FEndDate = dates[2])
       filter_date1 <- reactiveVal(value = NULL)
       
@@ -619,7 +619,7 @@ names(bom_data) <- "BOM"
       # Create a table with detailed information
       output$dt1 <- renderDT({
         if (!is.null(filter_date1())) {
-          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_Item_detail',FLogDate =     filter_date1())
+          data <- vmrdspkg::log_detail(conn = conn_erp,FTableName = 'rds_vw_log_ERPtoPLM_Item_detail',FLogDate =     filter_date1())
           datatable(
             data, 
             selection = 'none', 
@@ -638,7 +638,7 @@ names(bom_data) <- "BOM"
     var_log_dates_2 <- var_dateRange('log_dates_2')
     observeEvent(input$log_query2,{
       dates = var_log_dates_2()
-      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_BOM_summary',FStartDate = dates[1],FEndDate = dates[2])
+      data_summary <- vmrdspkg::log_summary(conn = conn_erp,FTableName = 'rds_vw_log_ERPtoPLM_BOM_summary',FStartDate = dates[1],FEndDate = dates[2])
       filter_date2 <- reactiveVal(value = NULL)
       
       # Update the filter date on click on data point
@@ -661,7 +661,7 @@ names(bom_data) <- "BOM"
       # Create a table with detailed information
       output$dt2 <- renderDT({
         if (!is.null(filter_date2())) {
-          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_ERPtoPLM_BOM_detail',FLogDate =     filter_date2())
+          data <- vmrdspkg::log_detail(conn = conn_erp,FTableName = 'rds_vw_log_ERPtoPLM_BOM_detail',FLogDate =     filter_date2())
           datatable(
             data, 
             selection = 'none', 
@@ -680,7 +680,7 @@ names(bom_data) <- "BOM"
     var_log_dates_3 <- var_dateRange('log_dates_3')
     observeEvent(input$log_query3,{
       dates = var_log_dates_3()
-      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_Item_summary',FStartDate = dates[1],FEndDate = dates[2])
+      data_summary <- vmrdspkg::log_summary(conn = conn_erp,FTableName = 'rds_vw_log_PLMtoERP_Item_summary',FStartDate = dates[1],FEndDate = dates[2])
       filter_date3 <- reactiveVal(value = NULL)
       
       # Update the filter date on click on data point
@@ -703,7 +703,7 @@ names(bom_data) <- "BOM"
       # Create a table with detailed information
       output$dt3 <- renderDT({
         if (!is.null(filter_date3())) {
-          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_Item_detail',FLogDate =     filter_date3())
+          data <- vmrdspkg::log_detail(conn = conn_erp,FTableName = 'rds_vw_log_PLMtoERP_Item_detail',FLogDate =     filter_date3())
           datatable(
             data, 
             selection = 'none', 
@@ -722,7 +722,7 @@ names(bom_data) <- "BOM"
     var_log_dates_4 <- var_dateRange('log_dates_4')
     observeEvent(input$log_query4,{
       dates = var_log_dates_4()
-      data_summary <- vmrdspkg::log_summary(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_BOM_summary',FStartDate = dates[1],FEndDate = dates[2])
+      data_summary <- vmrdspkg::log_summary(conn = conn_erp,FTableName = 'rds_vw_log_PLMtoERP_BOM_summary',FStartDate = dates[1],FEndDate = dates[2])
       filter_date4 <- reactiveVal(value = NULL)
       
       # Update the filter date on click on data point
@@ -745,7 +745,7 @@ names(bom_data) <- "BOM"
       # Create a table with detailed information
       output$dt4 <- renderDT({
         if (!is.null(filter_date4())) {
-          data <- vmrdspkg::log_detail(conn = conn_plm,FTableName = 'rds_vw_log_PLMtoERP_BOM_detail',FLogDate =     filter_date4())
+          data <- vmrdspkg::log_detail(conn = conn_erp,FTableName = 'rds_vw_log_PLMtoERP_BOM_detail',FLogDate =     filter_date4())
           datatable(
             data, 
             selection = 'none', 
