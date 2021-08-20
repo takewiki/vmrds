@@ -101,13 +101,13 @@ names(bom_data) <- "BOM"
        var_originalPwd <- password_md5(var_originalPwd())
        var_setNewPwd <-password_md5(var_setNewPwd())
        var_RepNewPwd <- password_md5(var_RepNewPwd())
-       check_originalPwd <- password_checkOriginal(fappId = app_id,fuser =user_info()$Fuser,fpassword = var_originalPwd)
+       check_originalPwd <- password_checkOriginal(fappId = app_id,fuser =user_info()$Fuser,fpassword = var_originalPwd,conn = conn_be)
        check_newPwd <- password_equal(var_setNewPwd,var_RepNewPwd)
        if(check_originalPwd){
           #原始密码正确
           #进一步处理
           if(check_newPwd){
-             password_setNew(fappId = app_id,fuser =user_info()$Fuser,fpassword = var_setNewPwd)
+             password_setNew(fappId = app_id,fuser =user_info()$Fuser,fpassword = var_setNewPwd,conn = conn_be)
              pop_notice('新密码设置成功:)') 
              shiny::removeModal()
              
