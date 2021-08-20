@@ -1,4 +1,4 @@
-app_title <-'域华电子数据中台V4.2';
+app_title <-'域华电子数据中台V4.3';
 #4.2
 # store data into rdbe in the rds database
 app_id <- 'vmrds'

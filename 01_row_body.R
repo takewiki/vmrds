@@ -26,7 +26,7 @@ menu_row <- tabItem(tabName = "row",
                                       ))
 
                                     )),
-                                    tabPanel('物料属性批量修改',tagList(
+                                    tabPanel('PLM2ERP物料属性批量修改',tagList(
                                       fluidRow(column(4,box(
                                         title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
                                         
