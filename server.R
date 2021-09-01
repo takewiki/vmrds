@@ -760,6 +760,29 @@ names(bom_data) <- "BOM"
       
       
     })
+    #进行分析
+    var_icmo_bom_ppbom_number <- var_text(id = 'icmo_bom_ppbom_number')
+    observeEvent(input$icmo_bom_ppbom_number_btn,{
+      fbillno =  var_icmo_bom_ppbom_number()
+      data <- vmrdspkg::rpt_icmo_ppbom_diff_number(conn = conn_erp,fbillno = fbillno)
+      run_dataTable2('icmo_bom_ppbom_number_btn_dataTable',data = data)
+      var_file_name = paste0('下达状态的生产任务投料单及BOM差异分析_按任务单号_',fbillno,'.xlsx')
+      run_download_xlsx(id = 'icmo_bom_ppbom_number_dl',data = data,filename = var_file_name)
+      
+      
+    })
+    
+    
+    var_icmo_bom_ppbom_item <- var_text(id = 'icmo_bom_ppbom_item')
+    observeEvent(input$icmo_bom_ppbom_item_btn,{
+      FNumber =  var_icmo_bom_ppbom_item()
+      data <- vmrdspkg::rpt_icmo_ppbom_diff_Item(conn = conn_erp,fnumber = FNumber) 
+      run_dataTable2('icmo_bom_ppbom_item_btn_dataTable',data = data)
+      var_file_name = paste0('下达状态的生产任务投料单及BOM差异分析_按物料代码_',FNumber,'.xlsx')
+      run_download_xlsx(id = 'icmo_bom_ppbom_item_dl',data = data,filename = var_file_name)
+      
+      
+    })
    
   
 })

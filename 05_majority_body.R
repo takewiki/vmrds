@@ -94,7 +94,36 @@ menu_majority <- tabItem(tabName = "majority",
                                              DTOutput('dt4')
                                            ))
                                            
-                                           )))
+                                           ))),
+                                         tabPanel('下达状态的生产任务投料单及BOM差异分析(按任务单号)',tagList(
+                                           fluidRow(column(4,box(
+                                             title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             mdl_text(id = 'icmo_bom_ppbom_number',label = '请输入下达状态的任务单号:',value = 'WORK017602'),
+                                             actionButton(inputId ='icmo_bom_ppbom_number_btn',label = '查询差异分析'),
+                                             mdl_download_button(id = 'icmo_bom_ppbom_number_dl',label = '下载差异分析')
+                                           )),
+                                           column(8, box(
+                                             title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             
+                                             div(style = 'overflow-x: scroll',mdl_dataTable('icmo_bom_ppbom_number_btn_dataTable','预览差异'))
+                                           )
+                                           ))
+                                           
+                                         )),
+                                         tabPanel('下达状态的生产任务投料单及BOM差异分析(按物料号)',tagList(
+                                           fluidRow(column(4,box(
+                                             title = "操作区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             mdl_text(id = 'icmo_bom_ppbom_item',label = '请输入物料号:',value = '1.207.01.00002'),
+                                             actionButton(inputId ='icmo_bom_ppbom_item_btn',label = '查询差异分析'),
+                                             mdl_download_button(id = 'icmo_bom_ppbom_item_dl',label = '下载差异分析')
+                                           )),
+                                           column(8, box(
+                                             title = "报表区域", width = NULL, solidHeader = TRUE, status = "primary",
+                                             div(style = 'overflow-x: scroll',mdl_dataTable('icmo_bom_ppbom_item_btn_dataTable','预览差异'))
+                                           )
+                                           ))
+                                           
+                                         ))
                                          
                                          
                                          
