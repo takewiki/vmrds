@@ -324,7 +324,9 @@ names(bom_data) <- "BOM"
         vmrdspkg::erp_checkItemUseStatus(conn = conn_erp)
         #更新数据
         print('3')
-        vmrdspkg::erp_updateItem_plmMode(conn = conn_erp)
+        #vmrdspkg::erp_updateItem_plmMode(conn = conn_erp)
+        #更新相相应的函数，追加了一些功能，如更新计量单位
+        vmrdspkg::erp_updateItem_erpMode (conn = conn_erp)
           
         
       })
