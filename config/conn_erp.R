@@ -1,5 +1,5 @@
-ip='192.168.0.110'
-port=1433
-user_name='sa'
-password='Vxmt$h5502'
-db_name='AIS20200629100920'
+ip='172.18.1.2'
+port = 1433
+user_name = 'sa'
+password = 'Qinzhou3*(vivax'
+db_name = 'AIS20140904110155'
